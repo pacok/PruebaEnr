@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Publicada</td>
+
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for licitacion in object_list %}
+		<tr>
+			<td>{{ licitacion.id }}</td>
+			<td>{{ licitacion.nombre }}</td>
+			<td>{{ licitacion.publicada }}</td>
+		    <td>
+				<a class="btn btn-primary" href="{% url 'licitacion:licitacion_editar' licitacion.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'licitacion:licitacion_eliminar' licitacion.id %}">Eliminar</a>
+			</td>
+        </tr>
+
+		{% endfor %}
+        <tr>
+            <a class="btn btn-primary" href="{% url 'licitacion:licitacion_crear' %}">Crear Nueva Licitacion</a>
+        </tr>
+
+		{% else %}
+		<h1>No hay registros de licitaciones</h1>
+        <a class="btn btn-primary" href="{% url 'licitacion:licitacion_crear' %}">Crear Nueva Licitacion</a>
+		{% endif %}
+
+	</tbody>
+</table>
+<
+{% endblock%}

@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Fecha</td>
+            <td>Licitacion</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for contrato in object_list %}
+		<tr>
+			<td>{{ contrato.id }}</td>
+			<td>{{ contrato.nombre }}</td>
+			<td>{{ contrato.fecha }}</td>
+            <td>{{ contrato.licitacion }}</td>
+		    <td>
+				<a class="btn btn-primary" href="{% url 'contrato:contrato_editar' contrato.id %}">Editar</a>
+				<a class="btn btn-danger"  href="{% url 'contrato:contrato_eliminar' contrato.id %}">Eliminar</a>
+			</td>
+        </tr>
+
+		{% endfor %}
+        <tr>
+            <a class="btn btn-primary" href="{% url 'contrato:contrato_crear' %}">Crear Nuevo Contrato</a>
+        </tr>
+
+		{% else %}
+		<h1>No hay registros de contratos</h1>
+        <a class="btn btn-primary" href="{% url 'contrato:contrato_crear' %}">Crear Nuevo Contrato</a>
+		{% endif %}
+
+	</tbody>
+</table>
+
+{% endblock%}

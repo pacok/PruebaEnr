@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Fecha</td>
+            <td>Adjunto</td>
+            <td>¿Esta licitada?</td>
+            <td>Licitacion</td>
+            <td>Contrato</td>
+            <td>Precio</td>
+            <td>Iva</td>
+            <td>Total</td>
+
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if object_list %}
+		{% for factura in object_list %}
+		<tr>
+			<td>{{ factura.id }}</td>
+			<td>{{ factura.nombre }}</td>
+			<td>{{ factura.fecha }}</td>
+            <td>{{ factura.adjunto }}</td>
+            <td>{{ factura.licitacion }}</td>
+            <td>{{ factura.contrato }}</td>
+            <td>{{ factura.precio }}</td>
+            <td>{{ factura.iva }}</td>
+            <td>{{ factura.total }}</td>
+
+		    <td>
+				<a class="btn btn-primary" href="{% url 'factura:factura_editar' factura.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'factura:factura_eliminar' factura.id %}">Eliminar</a>
+			</td>
+        </tr>
+
+		{% endfor %}
+        <tr>
+            <a class="btn btn-primary" href="{% url 'factura:factura_crear' %}">Crear Nueva Factura</a>
+        </tr>
+
+		{% else %}
+		<h1>No hay registros de Facturas</h1>
+        <a class="btn btn-primary" href="{% url 'factura:factura_crear' %}">Crear Nueva Factura</a>
+		{% endif %}
+
+	</tbody>
+</table>
+
+{% endblock%}

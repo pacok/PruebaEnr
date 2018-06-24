@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Prueba Enreda
+{% endblock %}
+{% block navbar%}
+<div class="bs-docs-section clearfix">
+		    <div class="row">
+		        <div class="col-lg-12">
+		            <div class="bs-component">
+		            	<nav class="navbar navbar-default">
+		                	<div class="container-fluid">
+		                  		<div class="navbar-header">
+		                    		<a class="navbar-brand" href="#">Enreda</a>
+		                  		</div>
+		                </div>
+		            </nav>
+		        </div>
+           	</div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	 <div class="row">
+    	<div class="col-md-6 col-md-offset-3">
+    		<div class="form-group">
+        		<label for="username">Nombre de usuario:</label>
+        		<input class="form-control" type="text" name="username">
+    	   </div>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-md-6 col-md-offset-3">
+    		<div class="form-group">
+        		<label for="username">Contraseña:</label>
+        		<input class="form-control" type="password" name="password">
+    	   </div>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="col-md-6 col-md-offset-3">
+    		<div class="form-group">
+        		<input class="btn btn-primary" type="submit" value="Ingresar">
+				<a href="{% url 'usuarios:registrar' %}">Registrarse</a>
+    	   </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
